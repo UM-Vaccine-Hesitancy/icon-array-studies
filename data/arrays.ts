@@ -1,0 +1,48 @@
+import { IconArray } from "@/types/types";
+
+export const iconArrays: IconArray[] = [
+  {
+    id: 1,
+    name: "Start",
+    rows: 10000,
+    cols: 100,
+    remainder: 0,
+    total: 1000000,
+    highlightCount: 1,
+    highlightPoints: [{ row: 0, col: 0 }],
+    zoom: false,
+  },
+  {
+    id: 2,
+    name: "Middle",
+    rows: 10000,
+    cols: 100,
+    remainder: 0,
+    total: 1000000,
+    highlightCount: 1,
+    highlightPoints: [{ row: 5000, col: 50 }],
+    zoom: false,
+  },
+  {
+    id: 3,
+    name: "End",
+    rows: 10000,
+    cols: 100,
+    remainder: 0,
+    total: 1000000,
+    highlightCount: 1,
+    highlightPoints: [{ row: 9999, col: 99 }],
+    zoom: false,
+  },
+  {
+    id: 4,
+    name: "Zoom",
+    rows: 1000,
+    cols: 1000,
+    remainder: 0,
+    total: 1000000,
+    highlightCount: 1,
+    highlightPoints: [{ row: 500, col: 500 }],
+    zoom: true,
+  },
+];
