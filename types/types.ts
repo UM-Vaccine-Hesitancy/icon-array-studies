@@ -8,6 +8,7 @@ export interface IconArray {
   highlightCount: number;
   highlightPoints: Point[];
   zoom?: boolean;
+  version?: number;
 }
 
 export interface Point {

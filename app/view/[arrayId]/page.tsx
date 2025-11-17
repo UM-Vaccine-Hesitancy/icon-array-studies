@@ -4,6 +4,7 @@ import IconArrayCanvas from "@/components/icon-array";
 import { hashids } from "@/utils/hashId";
 import ZoomCanvas from "@/components/zoom-canvas";
 import ScrollListener from "@/components/scroll-listener";
+import IconArrayCanvasV2 from "@/components/icon-array2";
 
 // For static website build
 export async function generateStaticParams() {
@@ -30,8 +31,27 @@ const ViewPage = async ({
       </main>
     );
 
+  const useVersion2 = arrayData.version && arrayData.version === 2;
   const chunkHeight = 1000;
   const totalChunks = Math.ceil(arrayData.rows / chunkHeight);
+
+  const RenderCanvas = () => {
+    if (arrayData.zoom) return <ZoomCanvas iconArray={arrayData} />;
+
+    const CanvasComp = useVersion2 ? IconArrayCanvasV2 : IconArrayCanvas;
+    return (
+      <div className="px-4">
+        {Array.from({ length: totalChunks }).map((_, chunk) => (
+          <CanvasComp
+            key={`${arrayData.id}-${chunk}`}
+            iconArray={arrayData}
+            chunk={chunk}
+            chunkHeight={chunkHeight}
+          />
+        ))}
+      </div>
+    );
+  };
 
   return (
     <main
@@ -39,18 +59,7 @@ const ViewPage = async ({
       id="scrollable"
     >
       {!arrayData.zoom && <ScrollListener targetId="scrollable" />}
-      {arrayData.zoom ? (
-        <ZoomCanvas iconArray={arrayData} />
-      ) : (
-        Array.from({ length: totalChunks }).map((_, chunk) => (
-          <IconArrayCanvas
-            key={`${arrayData.id}-${chunk}`}
-            iconArray={arrayData}
-            chunk={chunk}
-            chunkHeight={chunkHeight}
-          />
-        ))
-      )}
+      {<RenderCanvas />}
     </main>
   );
 };
