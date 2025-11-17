@@ -65,8 +65,10 @@ const VideoViewer = () => {
 
   const version = searchParams.get("version");
   const isScroll = searchParams.has("scroll");
-  let videoFile = version === "2" ? "zoom-2.mp4" : "zoom.mp4";
-  videoFile = isScroll ? "scroll.mp4" : videoFile;
+
+  const scrollVideoFile = version === "2" ? "scroll-2.mp4" : "scroll.mp4";
+  const zoomVideoFile = version === "2" ? "zoom-2.mp4" : "zoom.mp4";
+  const videoFile = isScroll ? scrollVideoFile : zoomVideoFile;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black">
